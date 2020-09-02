@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 
-export class FetchData extends Component<{}, {
+interface Forecast {
+  dateFormatted: string;
+  temperatureC: string;
+  temperatureF: string;
+  summary: string;
+}
+interface Props {};
+interface State {
   loading: boolean;
-  forecasts: string[];
-}> {
+  forecasts: Forecast[];
+};
+export class FetchData extends Component<Props, State> {
   displayName = FetchData.name
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = { forecasts: [], loading: true };
 
@@ -17,7 +25,7 @@ export class FetchData extends Component<{}, {
       });
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderForecastsTable(forecasts: State["forecasts"]) {
     return (
       <table className='table'>
         <thead>
