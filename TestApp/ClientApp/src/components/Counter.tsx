@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-interface Props {};
+interface Props {}
 interface State {
   currentCount: number;
-};
+}
 export class Counter extends Component<Props, State> {
-  displayName = Counter.name
+  displayName = Counter.name;
 
   constructor(props: Props) {
     super(props);
@@ -15,7 +15,7 @@ export class Counter extends Component<Props, State> {
 
   incrementCounter() {
     this.setState({
-      currentCount: this.state.currentCount + 1
+      currentCount: this.state.currentCount + 1,
     });
   }
 
@@ -26,7 +26,9 @@ export class Counter extends Component<Props, State> {
 
         <p>This is a simple example of a React component.</p>
 
-        <p>Current count: <strong>{this.state.currentCount}</strong></p>
+        <p>
+          Current count: <strong>{this.state.currentCount}</strong>
+        </p>
 
         <button onClick={this.incrementCounter}>Increment</button>
       </div>

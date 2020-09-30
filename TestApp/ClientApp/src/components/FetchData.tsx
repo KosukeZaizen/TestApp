@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 interface Forecast {
   dateFormatted: string;
@@ -6,28 +6,28 @@ interface Forecast {
   temperatureF: string;
   summary: string;
 }
-interface Props {};
+interface Props {}
 interface State {
   loading: boolean;
   forecasts: Forecast[];
-};
+}
 export class FetchData extends Component<Props, State> {
-  displayName = FetchData.name
+  displayName = FetchData.name;
 
   constructor(props: Props) {
     super(props);
     this.state = { forecasts: [], loading: true };
 
-    fetch('api/SampleData/WeatherForecasts')
-      .then(response => response.json())
-      .then(data => {
+    fetch("api/SampleData/WeatherForecasts")
+      .then((response) => response.json())
+      .then((data) => {
         this.setState({ forecasts: data, loading: false });
       });
   }
 
   static renderForecastsTable(forecasts: State["forecasts"]) {
     return (
-      <table className='table'>
+      <table className="table">
         <thead>
           <tr>
             <th>Date</th>
@@ -37,23 +37,27 @@ export class FetchData extends Component<Props, State> {
           </tr>
         </thead>
         <tbody>
-          {forecasts.map(forecast =>
+          {forecasts.map((forecast) => (
             <tr key={forecast.dateFormatted}>
               <td>{forecast.dateFormatted}</td>
               <td>{forecast.temperatureC}</td>
               <td>{forecast.temperatureF}</td>
               <td>{forecast.summary}</td>
             </tr>
-          )}
+          ))}
         </tbody>
       </table>
     );
   }
 
   render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+    let contents = this.state.loading ? (
+      <p>
+        <em>Loading...</em>
+      </p>
+    ) : (
+      FetchData.renderForecastsTable(this.state.forecasts)
+    );
 
     return (
       <div>
